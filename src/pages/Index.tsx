@@ -28,6 +28,11 @@ const Index = () => {
     setApplications((prev) => prev.map((a) => (a.id === id ? { ...a, status } : a)));
   };
 
+  const handleDelete = (id: string) => {
+    setApplications((prev) => prev.filter((a) => a.id !== id));
+    if (selectedId === id) setSelectedId(null);
+  };
+
   const handleAddJob = (app: JobApplication) => {
     setApplications((prev) => [app, ...prev]);
     setShowAddDialog(false);
