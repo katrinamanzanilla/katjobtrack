@@ -5,11 +5,12 @@ interface KanbanBoardProps {
   applications: JobApplication[];
   selectedId: string | null;
   onSelect: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 const columns: ApplicationStatus[] = ["saved", "applied", "interviewing", "offer", "rejected"];
 
-export function KanbanBoard({ applications, selectedId, onSelect }: KanbanBoardProps) {
+export function KanbanBoard({ applications, selectedId, onSelect, onDelete }: KanbanBoardProps) {
   return (
     <div className="flex gap-4 overflow-x-auto pb-4 h-full">
       {columns.map((status) => {
@@ -33,6 +34,7 @@ export function KanbanBoard({ applications, selectedId, onSelect }: KanbanBoardP
                   application={app}
                   isSelected={selectedId === app.id}
                   onClick={() => onSelect(app.id)}
+                  onDelete={onDelete}
                 />
               ))}
               {items.length === 0 && (
