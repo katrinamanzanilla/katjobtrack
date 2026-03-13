@@ -10,7 +10,7 @@ interface KanbanBoardProps {
 
 const columns: ApplicationStatus[] = ["saved", "applied", "interviewing", "offer", "rejected"];
 
-export function KanbanBoard({ applications, selectedId, onSelect }: KanbanBoardProps) {
+export function KanbanBoard({ applications, selectedId, onSelect, onDelete }: KanbanBoardProps) {
   return (
     <div className="flex gap-4 overflow-x-auto pb-4 h-full">
       {columns.map((status) => {
