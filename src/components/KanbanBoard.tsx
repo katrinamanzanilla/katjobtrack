@@ -5,6 +5,7 @@ interface KanbanBoardProps {
   applications: JobApplication[];
   selectedId: string | null;
   onSelect: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 const columns: ApplicationStatus[] = ["saved", "applied", "interviewing", "offer", "rejected"];
