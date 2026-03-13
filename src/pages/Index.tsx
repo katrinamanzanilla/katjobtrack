@@ -71,6 +71,7 @@ const Index = () => {
               applications={filteredApps}
               selectedId={selectedId}
               onSelect={setSelectedId}
+              onDelete={handleDelete}
             />
           )}
           {activeView === "calendar" && (

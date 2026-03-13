@@ -34,6 +34,7 @@ export function KanbanBoard({ applications, selectedId, onSelect, onDelete }: Ka
                   application={app}
                   isSelected={selectedId === app.id}
                   onClick={() => onSelect(app.id)}
+                  onDelete={onDelete}
                 />
               ))}
               {items.length === 0 && (
