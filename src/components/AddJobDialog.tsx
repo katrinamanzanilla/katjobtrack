@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { type JobApplication, type ApplicationStatus } from "@/lib/data";
+import { type JobApplication } from "@/lib/data";
 
 interface AddJobDialogProps {
   onAdd: (app: JobApplication) => void;
@@ -70,6 +70,12 @@ export function AddJobDialog({ onAdd, onClose }: AddJobDialogProps) {
             placeholder="Notes"
             value={form.notes}
             onChange={(e) => setForm({ ...form, notes: e.target.value })}
+          />
+                <Input
+            type="url"
+            placeholder="Job posting URL"
+            value={form.url}
+            onChange={(e) => setForm({ ...form, url: e.target.value })}
           />
           <div className="flex gap-2 pt-2">
             <Button type="button" variant="outline" onClick={onClose} className="flex-1">

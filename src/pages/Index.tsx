@@ -4,6 +4,7 @@ import { KanbanBoard } from "@/components/KanbanBoard";
 import { DetailPanel } from "@/components/DetailPanel";
 import { DashboardView } from "@/components/DashboardView";
 import { AddJobDialog } from "@/components/AddJobDialog";
+import { CalendarView } from "@/components/CalendarView";
 import { sampleApplications, type JobApplication, type ApplicationStatus } from "@/lib/data";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -18,11 +19,17 @@ const Index = () => {
 
   const selectedApp = applications.find((a) => a.id === selectedId) ?? null;
 
-  const filteredApps = applications.filter(
-    (a) =>
-      a.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      a.position.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+
+  const filteredApps = applications.filter((a) => {
+    if (!normalizedQuery) return true;
+
+    return (
+      a.company.toLowerCase().includes(normalizedQuery) ||
+      a.position.toLowerCase().includes(normalizedQuery) ||
+      a.location.toLowerCase().includes(normalizedQuery)
+    );
+  });
 
   const handleStatusChange = (id: string, status: ApplicationStatus) => {
     setApplications((prev) => prev.map((a) => (a.id === id ? { ...a, status } : a)));
@@ -74,14 +81,7 @@ const Index = () => {
               onDelete={handleDelete}
             />
           )}
-          {activeView === "calendar" && (
-            <div className="flex items-center justify-center h-full">
-              <div className="text-center space-y-2">
-                <p className="font-heading text-lg font-semibold text-foreground">Calendar View</p>
-                <p className="text-sm text-muted-foreground">Coming soon — track interview dates and deadlines.</p>
-              </div>
-            </div>
-          )}
+                    {activeView === "calendar" && <CalendarView applications={filteredApps} />}
         </div>
       </main>
 

@@ -58,7 +58,7 @@ export function DashboardView({ applications }: DashboardViewProps) {
       <div>
         <h3 className="font-heading text-sm font-semibold text-foreground mb-3">Recent Activity</h3>
         <div className="space-y-2">
-          {applications
+          {[...applications]
             .sort((a, b) => new Date(b.dateApplied).getTime() - new Date(a.dateApplied).getTime())
             .slice(0, 5)
             .map((app) => (

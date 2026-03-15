@@ -72,6 +72,22 @@ export function DetailPanel({ application, onClose, onStatusChange }: DetailPane
           </div>
         </div>
 
+  {application.url && (
+          <div>
+            <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Posting</p>
+            <a
+              href={application.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+            >
+              Open listing
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        )}
+
+
         {application.notes && (
           <div>
             <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Notes</p>

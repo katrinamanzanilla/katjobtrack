@@ -13,6 +13,7 @@ interface ApplicationCardProps {
 export function ApplicationCard({ application, isSelected, onClick, onDelete }: ApplicationCardProps) {
   return (
     <button
+    type="button"
       onClick={onClick}
       className={cn(
         "group w-full text-left p-4 rounded-lg border transition-all duration-150",
@@ -27,15 +28,17 @@ export function ApplicationCard({ application, isSelected, onClick, onDelete }: 
           <p className="text-sm text-muted-foreground">{application.company}</p>
         </div>
         <div className="flex items-center gap-1.5">
-          <span
-            role="button"
-            tabIndex={0}
-            onClick={(e) => { e.stopPropagation(); onDelete(application.id); }}
-            onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); onDelete(application.id); } }}
+               <button
+            type="button"
+            aria-label={`Delete ${application.position} at ${application.company}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(application.id);
+            }}
             className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-destructive/10 text-muted-foreground hover:text-destructive"
           >
             <Trash2 className="h-3.5 w-3.5" />
-          </span>
+          </button>
           <Badge variant={application.status}>{statusLabels[application.status]}</Badge>
         </div>
       </div>
