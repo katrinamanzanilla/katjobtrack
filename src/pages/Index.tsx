@@ -72,7 +72,7 @@ const Index = () => {
         </header>
 
         <div className="flex-1 overflow-auto p-6">
-          {activeView === "dashboard" && <DashboardView applications={applications} />}
+          {activeView === "dashboard" && <DashboardView applications={filteredApps} />}
           {activeView === "applications" && (
             <KanbanBoard
               applications={filteredApps}
